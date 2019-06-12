@@ -1,0 +1,2 @@
+module Tyb::ConfigurationsHelper
+end

@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Redirects</h1>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>CA</th>
+    <th>Backend</th>
+    <th>Certificate</th>
+    <th>Apache saved</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @redirects.each do |redirect| %>
+    <% if redirect.certificate.date_time_end
+         dn = Time.now.utc
+         de = redirect.certificate.date_time_end
+         txt = de < dn ? 'text-danger' : 'text-primary'
+         lnk = link_to(redirect.certificate.date_time_end.to_s, redirect_certificate_path(redirect), class: txt)
+       else
+         lnk = link_to("Create Certificate", new_redirect_certificate_path(redirect), class: "badge badge-primary")
+       end
+    %>
+    <tr>
+      <td><%= redirect.name %></td>
+      <td><%= redirect.ca.name if redirect.ca %></td>
+      <td><%= redirect.backend %></td>
+      <td><%= lnk %></td>
+      <td><%= check_box_tag nil, nil, redirect.apache_saved, disabled: true %></td>
+      <td><%= link_to 'Show', redirect %></td>
+      <td><%= link_to 'Edit', edit_redirect_path(redirect) %></td>
+      <td><%= link_to 'Destroy', redirect, method: :delete, data: {confirm: 'Are you sure?'}, class: '' %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Redirect', new_redirect_path, class: 'btn btn-primary' %>

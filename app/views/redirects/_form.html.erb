@@ -1,0 +1,51 @@
+<%= form_with(model: redirect, local: true) do |form| %>
+  <% if redirect.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(redirect.errors.count, "error") %> prohibited this redirect from being saved:</h2>
+
+      <ul>
+      <% redirect.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ca_id %>
+    <%= form.collection_select(:ca_id, @cas, :id, :name, {:prompt => false}) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :backend %>
+    <%= form.text_field :backend %>
+  </div>
+
+  <div class="field">
+    <%= form.label 'Create certificate' %>
+    <%= form.check_box :with_certificate, checked: @with_certificate %>
+  </div>
+
+  <div class="field">
+    <%= form.label 'Save configuration to Apache' %>
+    <%= form.check_box :with_apache, checked: @with_apache %>
+  </div>
+
+
+  <div class="field input-group input-group-sm">
+    <div class="input-group-prepend">
+      <%= form.label :apache_config, class: "input-group-text", id: "inputGroup-sizing-sm" %>
+    </div>
+    <%= form.text_area :apache_config, id: 'cfg_text', class: "form-control", 'aria-describedby': "inputGroup-sizing-sm", style: "height: 350px;" %>
+  </div>
+  <div class="mb-3">* To regenerate the configuration, <a href="#" onclick="$('#cfg_text').html('')">empty the entire edit box</a> before saving. Bad configuration will not be saved to Apache.</div>
+
+  <div class="actions">
+    <%= form.submit nil, class: 'btn btn-primary'  %>
+  </div>
+<% end %>

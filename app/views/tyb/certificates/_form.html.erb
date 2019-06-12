@@ -1,0 +1,88 @@
+<%= form_with(model: tyb_certificate, local: true) do |form| %>
+  <% if tyb_certificate.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(tyb_certificate.errors.count, "error") %> prohibited this 'certificate' from being saved:</h2>
+
+      <ul>
+        <% tyb_certificate.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :ca_id %>
+    <%= form.collection_select(:ca_id, @cas, :id, :name, {:prompt => 'Self signed certificate'}) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :domain %>
+    <%= form.text_field :domain %>
+  </div>
+
+  <div class="field">
+    <%= form.label :generated %>
+    <%= form.check_box :generated, onchange: "changeGenerated()", id: 'generatedCheckbox' %>
+  </div>
+
+  <div id="certificateGenerated" style="display: none">
+    <div class="field">
+      <%= form.label 'Days for ceritificate' %>
+      <%= form.text_field :days %>
+    </div>
+
+    <div class="field">
+      <%= form.label 'Type of key to generate' %>
+      <%= form.text_field :gen_key_type %>
+    </div>
+
+    <div class="field">
+      <%= form.label 'Size of key to generate' %>
+      <%= form.text_field :gen_key_size %>
+    </div>
+  </div>
+
+  <div id="certificateManual" style="display: inline">
+    <div class="field">
+      <%= form.label :certificate %>
+      <%= form.text_area :certificate %>
+    </div>
+
+    <div class="field">
+      <%= form.label :key %>
+      <%= form.text_area :key %>
+    </div>
+
+    <div class="field">
+      <%= form.label :ca_certificate %>
+      <%= form.text_area :ca_certificate %>
+    </div>
+
+  </div>
+
+  <div class="field">
+    <%= form.label :autoupdate %>
+    <%= form.check_box :autoupdate %>
+  </div>
+
+  <!--  <div class="field">
+    <%#= form.label :data %>
+  <%#= form.text_area :data %>
+  </div>-->
+
+  <div class="actions">
+    <%= form.submit 'CREATE CERTIFICATE', class: 'btn btn-primary' %>
+  </div>
+
+<% end %>
+
+<script>
+    console.log("set check")
+    changeGenerated()
+</script>

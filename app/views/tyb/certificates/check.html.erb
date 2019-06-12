@@ -1,0 +1,89 @@
+<h1><span class="badge badge-warning">CERTIFICATES CHECK</span></h1>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th>Ca</th>
+    <th>Name</th>
+    <th>Domain</th>
+    <th>Redirects</th>
+    <th>Gen</th>
+    <th>AUpd</th>
+    <th>ChT</th>
+    <th>Certificate</th>
+    <th>Ver</th>
+    <th>Key</th>
+    <th>Status</th>
+    <th>Token</th>
+    <th>Audit</th>
+    <th>Message</th>
+    <th>EKDays</th>
+    <th>EKType</th>
+    <th>EKSize</th>
+
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @tyb_certificates.each do |tyb_certificate| %>
+    <%
+      if tyb_certificate.key.blank?
+        key = link_to("Generate key", new_key_tyb_certificate_path(tyb_certificate) , class: "badge badge-primary", style: 'font-size: 10px')
+      else
+        key = tyb_certificate.key_info
+      end
+
+      if tyb_certificate.cert_key
+        #puts tyb_certificate.cert_key.to_text
+        #puts tyb_certificate.cert_key.to_text
+      end
+    %>
+    <%
+      dte = tyb_certificate.date_time_end
+
+      if dte
+        dn = Time.now.utc
+        de = dte
+        ch = tyb_certificate.will_updated?
+        #puts distance_of_time_in_words(dn,de)
+        txt = de < dn ? 'text-danger' : ( ch ? 'text-success' : 'text-primary')
+        lnk = link_to(dte.strftime("%d.%m.%Y %H:%M"), tyb_certificate_path(tyb_certificate), class: txt + ' font-weight-bold')
+      else
+        lnk = link_to("Create Certificate", new_certificate_tyb_certificate_path(tyb_certificate) , class: "badge badge-primary", style: 'font-size: 10px')
+      end
+    %>
+    <tr>
+      <td><%= tyb_certificate.ca_name %></td>
+      <td><%= tyb_certificate.name %></td>
+      <td><%= tyb_certificate.domain %></td>
+      <td><%= tyb_certificate.redirects.map {|r| r.name.to_s}.join(', ') %></td>
+      <td><%= check_box_tag nil, nil, tyb_certificate.generated, disabled: true  %></td>
+      <td><%= check_box_tag nil, nil, tyb_certificate.autoupdate, disabled: true  %></td>
+      <td><%= check_box_tag nil, nil, tyb_certificate.will_updated?, disabled: true  %></td>
+      <td><%= lnk %></td>
+      <td><%= check_box_tag nil, nil, tyb_certificate.verify, disabled: true  %></td>
+      <td><%= key %></td>
+      <td><%= tyb_certificate.status %></td>
+      <td title="<%=tyb_certificate.token %>"><%= 'TOKEN' if !tyb_certificate.token.blank? %></td>
+      <td><%= tyb_certificate.audit %></td>
+      <td><%= tyb_certificate.message %></td>
+      <td><%= tyb_certificate.days %></td>
+      <td><%= tyb_certificate.gen_key_type %></td>
+      <td><%= tyb_certificate.gen_key_size %></td>
+
+      <td><%= link_to 'Show', tyb_certificate %></td>
+      <td><%= link_to 'Edit', edit_tyb_certificate_path(tyb_certificate) %></td>
+      <td><%= link_to 'Destroy', tyb_certificate, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+      <td><%= link_to 'Clear', clear_tyb_certificate_path(tyb_certificate) %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+<% content_for :footer do %>
+  <%= link_to 'NEW CERTIFICATE', new_tyb_certificate_path, class: 'btn btn-primary mr-2' %>
+  <%= link_to 'CHECK CERTIFICATES', '/command/check', class: 'btn btn-primary' %>
+<% end %>
+

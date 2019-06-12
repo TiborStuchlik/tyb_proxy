@@ -1,0 +1,49 @@
+<%= form_with(model: ca, local: true) do |form| %>
+  <% if ca.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(ca.errors.count, "error") %> prohibited this ca from being saved:</h2>
+
+      <ul>
+      <% ca.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :internal %>
+    <%= form.check_box :internal %>
+  </div>
+
+  <div class="field">
+    <%= form.label :path %>
+    <%= form.text_field :path %>
+  </div>
+
+  <div class="field">
+    <%= form.label :key %>
+    <%= form.text_area :key %>
+  </div>
+
+  <div class="field">
+    <%= form.label :certificate %>
+    <%= form.text_area :certificate %>
+  </div>
+
+  <div class="field input-group input-group-sm mb-3">
+    <div class="input-group-prepend">
+      <%= form.label :apache_config, class: "input-group-text", id: "inputGroup-sizing-sm" %>
+    </div>
+    <%= form.text_area :apache_config, class: "form-control", 'aria-describedby': "inputGroup-sizing-sm", style: "height: 350px;" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

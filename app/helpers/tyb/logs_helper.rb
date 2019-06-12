@@ -1,0 +1,2 @@
+module Tyb::LogsHelper
+end

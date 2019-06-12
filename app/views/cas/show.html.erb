@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @ca.name %>
+</p>
+
+<p>
+  <strong>Internal:</strong>
+  <%= @ca.internal %>
+</p>
+
+<p>
+  <strong>Path:</strong>
+  <%= @ca.path %>
+</p>
+
+<p>
+  <strong>Apache configuration template:</strong>
+<pre><%= @ca.apache_config %></pre>
+</p>
+
+<p>
+  <strong>Key:</strong>
+  <pre><%= @ca.key %></pre>
+</p>
+
+<p>
+  <strong>Certificate:</strong>
+  <pre><%= @ca.certificate %></pre>
+</p>
+
+
+<%= link_to 'Edit', edit_ca_path(@ca) %> |
+<%= link_to 'Back', cas_path %>

@@ -1,0 +1,27 @@
+<h1><span class="badge badge-warning">HOME</span></h1>
+<hr>
+<h4><%= "Create certificate for domain #{request.host}" %></h4>
+<p><%= link_to "Create certificate for this domain(#{request.host})", 'command/create', class: 'btn btn-primary' %></p>
+<hr>
+<h4>Create certificate for domain</h4>
+<p>
+  <%= form_tag('command/create', class: "form-inline") do %>
+  <div class="form-group mb-2">
+    <%= label_tag(:q, "Domain:", class: "") %>
+  </div>
+  <div class="form-group mx-sm-3 mb-2">
+    <%= text_field_tag(:domain, nil, class: 'form-control', style: 'width: 250px') %>
+  </div>
+  <%= submit_tag("Create", class: "btn btn-primary mb-2") %><% end %>
+</p>
+<hr>
+<h4>Configuration</h4>
+<p>
+  <%= $configuration.inspect %>
+</p>
+<hr>
+<h4>Internals Redirects</h4>
+<p>
+  <%= $redirects.inspect %>
+</p>
+<hr>

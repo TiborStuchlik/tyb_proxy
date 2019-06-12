@@ -1,0 +1,28 @@
+<h1>New Key</h1>
+<% tyb_certificate = @tyb_certificate %>
+<%= form_with(model: tyb_certificate, local: true) do |form| %>
+  <% if tyb_certificate.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(tyb_certificate.errors.count, "error") %> prohibited this 'certificate' from being saved:</h2>
+
+      <ul>
+        <% tyb_certificate.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= render partial: 'new_key', locals: { form: form } %>
+
+  <div class="hidden-field">
+    <%= form.hidden_field 'sub_action', value: :new_key %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Create key', class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
+
+<%= link_to 'Back', tyb_certificates_path %>

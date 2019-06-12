@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @tyb_ca.name %>
+</p>
+
+<p>
+  <strong>Path:</strong>
+  <%= @tyb_ca.path %>
+</p>
+
+<p>
+  <strong>Key:</strong>
+  <%= @tyb_ca.key %>
+</p>
+
+<p>
+  <strong>Certificate:</strong>
+  <%= @tyb_ca.certificate %>
+</p>
+
+<p>
+  <strong>Data:</strong>
+  <%= @tyb_ca.data %>
+</p>
+
+<p>
+  <strong>Apache config:</strong>
+  <%= @tyb_ca.apache_config %>
+</p>
+
+<p>
+  <strong>Last check:</strong>
+  <%= @tyb_ca.last_check %>
+</p>
+
+<%= link_to 'Edit', edit_tyb_ca_path(@tyb_ca) %> |
+<%= link_to 'Back', tyb_cas_path %>

@@ -1,0 +1,75 @@
+<%= form_with(model: tyb_redirect, local: true) do |form| %>
+<div style="max-width: 500px">
+  <% if tyb_redirect.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(tyb_redirect.errors.count, "error") %> prohibited this tyb_redirect from being saved:</h2>
+
+      <ul>
+      <% tyb_redirect.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :host %>
+    <%= form.text_field :host, class: 'form-control'  %>
+  </div>
+
+  <div class="field">
+    <%= form.label :internal %>
+    <%= form.check_box :internal, class: '' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :backend %>
+    <%= form.text_field :backend, class: 'form-control'  %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cert_path %>
+    <%= form.text_field :cert_path, class: 'form-control'  %>
+  </div>
+
+  <div class="field">
+    <%= form.label :certificate_id %>
+    <%= form.collection_select(:certificate_id, @certificates, :id, :name, {:prompt => 'Select'}, class: 'form-control') %>
+  </div>
+
+  <div class="field">
+    <%= form.label :export_module %>
+    <%= form.text_field :export_module, class: 'form-control'  %>
+  </div>
+
+  <div class="field">
+    <%= form.label :apache_config %>
+    <%= form.text_area :apache_config, class: 'form-control', style: 'font-size: 12px; height: 400px; white-space: nowrap;  overflow: auto;'  %>
+  </div>
+
+  <div class="field">
+    <%= form.label :auto_write_apache %>
+    <%= form.check_box :auto_write_apache, class: '' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :apache_written %>
+    <%= form.check_box :apache_written, class: '' %>
+  </div>
+
+<!--  <div class="field">-->
+    <%#= form.label :data %>
+    <%#= form.text_area :data %>
+<!--  </div>-->
+
+  <div class="actions">
+    <%= form.submit 'SAVE', class: 'btn btn-primary' %>
+  </div>
+</div>
+
+<% end %>

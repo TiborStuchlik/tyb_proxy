@@ -1,0 +1,53 @@
+<h1><span class="badge badge-warning">REDIRECTS</span></h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Host</th>
+      <th>Certificate</th>
+      <th>int</th>
+      <th>Backend</th>
+      <th>Certificate path</th>
+      <th>Status text</th>
+      <th>AWA</th>
+      <th>AW</th>
+      <th>Export module</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tyb_redirects.each do |tyb_redirect| %>
+  <%
+  c = tyb_redirect.certificate
+    if c
+      cert = c.name
+    else
+      cert = '-'
+    end
+  %>
+      <tr>
+        <td><%= tyb_redirect.name %></td>
+        <td><%= tyb_redirect.host %></td>
+        <td><%= tyb_redirect.certificate.name if tyb_redirect.certificate %></td>
+        <td><%= check_box_tag nil, nil, tyb_redirect.internal, disabled: true  %></td>
+        <td><%= tyb_redirect.backend %></td>
+        <td><%= tyb_redirect.cert_path %></td>
+        <td><%= tyb_redirect.status_text %></td>
+        <td><%= check_box_tag nil, nil, tyb_redirect.auto_write_apache, disabled: true  %></td>
+        <td><%= check_box_tag nil, nil, tyb_redirect.apache_written, disabled: true  %></td>
+        <td><%= tyb_redirect.module_status %></td>
+        <td><%= link_to 'Show', tyb_redirect %></td>
+        <td><%= link_to 'Edit', edit_tyb_redirect_path(tyb_redirect) %></td>
+        <td><%= link_to 'Destroy', tyb_redirect, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
+<% content_for :footer do %>
+  <%= link_to 'NEW REDIRECT', new_tyb_redirect_path, class: 'btn btn-primary mr-2' %>
+<% end %>

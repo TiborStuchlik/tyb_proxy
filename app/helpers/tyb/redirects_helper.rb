@@ -1,0 +1,2 @@
+module Tyb::RedirectsHelper
+end

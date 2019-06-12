@@ -1,0 +1,42 @@
+<%= form_with(model: tyb_configuration, local: true) do |form| %>
+  <% if tyb_configuration.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(tyb_configuration.errors.count, "error") %> prohibited this tyb_configuration from being saved:</h2>
+
+      <ul>
+      <% tyb_configuration.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :group %>
+    <%= form.text_field :group %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :value %>
+    <%= form.text_area :value %>
+  </div>
+
+  <div class="field">
+    <%= form.label :value_type %>
+    <%= form.text_field :value_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :data %>
+    <%= form.text_area :data %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,31 @@
+<h2><%= @domain %></h2>
+<h3>edition: <%= @cert_res[0] %></h3>
+
+<hr>
+<h3>Server certificate</h3>
+<pre id="to_copy_cert"><%= @cert_res[2] %></pre>
+<%= link_to "DOWNLOAD AS .PEM", '/command/certdownload?cert=' + @domain + '&ext=pem', class: 'btn btn-primary' %>
+<%= link_to "DOWNLOAD AS .CRT", '/command/certdownload?cert=' + @domain + '&ext=crt', class: 'btn btn-primary' %>
+<%= button_tag 'COPY', class: 'btn btn-secondary btn_copy', 'data-clipboard-target': "#to_copy_cert"  %>
+<hr>
+<h3>Server certificate info</h3>
+<pre><%= @cert_res[2].to_text %></pre>
+<hr>
+<h3>CA Certificate</h3>
+<pre id="to_copy_ca"><%= @cert_res[3] %></pre>
+<%= link_to "DOWNLOAD AS .PEM", '/command/certdownload?cert=' + @domain + '&ext=pem&ca=true', class: 'btn btn-primary' %>
+<%= link_to "DOWNLOAD AS .CRT", '/command/certdownload?cert=' + @domain + '&ext=crt&ca=true', class: 'btn btn-primary' %>
+<%= button_tag 'COPY', class: 'btn btn-secondary btn_copy', 'data-clipboard-target': "#to_copy_ca"  %>
+<hr>
+<h3>CA Certificate info</h3>
+<pre><%= @cert_res[3].to_text %></pre>
+<hr>
+<script>
+    var clipboard = new ClipboardJS('.btn');
+    clipboard.on('success', function(e) {
+        //console.log(e);
+    });
+    clipboard.on('error', function(e) {
+        //console.log(e);
+    });
+</script>

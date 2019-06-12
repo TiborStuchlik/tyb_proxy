@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @tyb_redirect.name %>
+</p>
+
+<p>
+  <strong>Host:</strong>
+  <%= @tyb_redirect.host %>
+</p>
+
+<p>
+  <strong>Backend:</strong>
+  <%= @tyb_redirect.backend %>
+</p>
+
+<p>
+  <strong>Certificate:</strong>
+  <%= @tyb_redirect.certificate %>
+</p>
+
+<!--<p>-->
+<!--  <strong>Data:</strong>-->
+  <%#= @tyb_redirect.data %>
+<!--</p>-->
+
+<%= link_to 'Edit', edit_tyb_redirect_path(@tyb_redirect) %> |
+<%= link_to 'Back', tyb_redirects_path %>

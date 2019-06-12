@@ -1,0 +1,48 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Ca:</strong>
+  <%= @tyb_certificate.ca_name %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @tyb_certificate.name %>
+</p>
+
+<p>
+  <strong>Domain:</strong>
+  <%= @tyb_certificate.domain %>
+</p>
+
+<hr>
+<p>
+  <strong>Certificate:</strong>
+  <pre id="to_copy_cert"><%= @tyb_certificate.certificate %></pre>
+</p>
+<%= link_to "DOWNLOAD AS .PEM", download_tyb_certificate_path + '?ext=pem&what=cert', class: 'btn btn-primary' %>
+<%= link_to "DOWNLOAD AS .CRT", download_tyb_certificate_path + '?ext=crt&what=cert', class: 'btn btn-primary' %>
+<%= button_tag 'COPY', class: 'btn btn-secondary btn_copy', 'data-clipboard-target': "#to_copy_cert"  %>
+
+<hr>
+<p>
+  <strong>Key:</strong>
+  <pre id="to_copy_key"><%= @tyb_certificate.key %></pre>
+</p>
+<%= link_to "DOWNLOAD AS .PEM", download_tyb_certificate_path + '?ext=pem&what=key', class: 'btn btn-primary' %>
+<%= link_to "DOWNLOAD AS .CRT", download_tyb_certificate_path + '?ext=crt&what=key', class: 'btn btn-primary' %>
+<%= button_tag 'COPY', class: 'btn btn-secondary btn_copy', 'data-clipboard-target': "#to_copy_key"  %>
+
+<hr>
+<%= link_to 'Edit', edit_tyb_certificate_path(@tyb_certificate) %> |
+<%= link_to 'Back', tyb_certificates_path %>
+
+<script>
+    var clipboard = new ClipboardJS('.btn');
+    clipboard.on('success', function(e) {
+        //console.log(e);
+    });
+    clipboard.on('error', function(e) {
+        //console.log(e);
+    });
+</script>

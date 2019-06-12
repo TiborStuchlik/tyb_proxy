@@ -1,0 +1,22 @@
+<p>
+  <strong>Name:</strong>
+  <%= @redirect.name %>
+</p>
+
+<p>
+  <strong>CA:</strong>
+  <%= @redirect.ca.name if @redirect.ca %>
+</p>
+
+<p>
+  <strong>Backend:</strong>
+  <%= @redirect.backend %>
+</p>
+
+<p>
+  <strong>Apache config:</strong>
+  <pre><%= @redirect.apache_config %></pre>
+</p>
+
+<%= link_to 'Edit', edit_redirect_path(@redirect) %> |
+<%= link_to 'Back', redirects_path %>

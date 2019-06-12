@@ -1,0 +1,26 @@
+<%
+val = @days ||= 10
+%>
+<%= form_for certificate, url: {action: "create"} do |form| %>
+
+  <div class="field form-group" style="max-width: 500px">
+    <%= form.label :days %>
+    <%= form.text_field :days, value: val, class: "form-control", placeholder: "Days to expire e. g. 365 for year." do %>
+    <% end %>
+  </div>
+
+  <div class="field form-group" style="max-width: 500px">
+    <%= form.label :configuration %>
+    <%= form.text_area :configuration, style: "height: 300px", class: "form-control", placeholder: "Left blank for default." %>
+  </div>
+
+  <div class="field">
+    <%= form.label 'Write configuration to Apache' %>
+    <%= form.check_box :with_apache, checked: @with_apache  %>
+  </div>
+
+  <div class="actions form-group">
+    <%= form.submit nil, class: 'btn btn-primary'  %>
+  </div>
+
+<% end %>

@@ -1,0 +1,25 @@
+<h1><span class="badge badge-warning">LOGS</span></h1>
+
+<% @tyb_logs.each do |tyb_log| %>
+  <%
+    case tyb_log.status
+    when 0
+      cls = "alert-success"
+    when 1
+      cls = "alert-warning"
+    when 2
+      cls = "alert-danger"
+    else
+      cls = "alert-light"
+    end
+  %>
+  <div class="alert <%= cls %>" role="alert">
+    <h6 class="alert-heading"><strong><%= "#{tyb_log.created_at}(#{tyb_log.id})" %>: <%= tyb_log.title %></strong></h6>
+    <%= raw tyb_log.content %>
+  </div>
+<% end %>
+
+<% content_for :footer do %>
+  <%= link_to 'CLEAR LOGS', clear_tyb_logs_path, class: "btn btn-primary" %>
+<% end %>
+

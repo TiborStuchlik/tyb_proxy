@@ -1,0 +1,38 @@
+<h1><span class="badge badge-warning">CONFIGURATION</span></h1>
+
+<% @cfg.each do |k, v| %>
+  <hr>
+  <h4><%= k %></h4>
+  <hr>
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Group</th>
+      <th>Name</th>
+      <th>Value</th>
+      <th>Value type</th>
+      <th colspan="3"></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% v.each do |tyb_configuration| %>
+      <tr>
+        <td><%= tyb_configuration.group %></td>
+        <td><%= tyb_configuration.name %></td>
+        <td title="<%= tyb_configuration.value %>"><%= tyb_configuration.value_view %></td>
+        <td><%= tyb_configuration.value_type %></td>
+        <td><%= link_to 'Show', tyb_configuration %></td>
+        <td><%= link_to 'Edit', edit_tyb_configuration_path(tyb_configuration) %></td>
+        <td><%= link_to 'Destroy', tyb_configuration, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+      </tr>
+    <% end %>
+
+    </tbody>
+  </table>
+<% end %>
+<br>
+<% content_for :footer do %>
+  <%= link_to 'NEW CONFIGURATION', new_tyb_configuration_path, class: "btn btn-primary" %>
+<% end %>

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Group:</strong>
+  <%= @tyb_configuration.group %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @tyb_configuration.name %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @tyb_configuration.value %>
+</p>
+
+<p>
+  <strong>Value type:</strong>
+  <%= @tyb_configuration.value_type %>
+</p>
+
+<p>
+  <strong>Data:</strong>
+  <%= @tyb_configuration.data %>
+</p>
+
+<%= link_to 'Edit', edit_tyb_configuration_path(@tyb_configuration) %> |
+<%= link_to 'Back', tyb_configurations_path %>

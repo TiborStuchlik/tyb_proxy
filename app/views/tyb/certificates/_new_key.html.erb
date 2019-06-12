@@ -1,0 +1,9 @@
+<div class="field">
+  <%= form.label :key_type %>
+  <%= form.select( :key_type, options_for_select(@types)) %>
+</div>
+
+<div class="field">
+  <%= form.label :key_size %>
+  <%= form.select( :key_size, options_for_select(@sizes, '2048'))  %>
+</div>

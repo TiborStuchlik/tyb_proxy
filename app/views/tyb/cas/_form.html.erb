@@ -1,0 +1,68 @@
+<%= form_with(model: tyb_ca, local: true) do |form| %>
+  <% if tyb_ca.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(tyb_ca.errors.count, "error") %> prohibited this tyb_ca from being saved:</h2>
+
+      <ul>
+      <% tyb_ca.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :path %>
+    <%= form.text_field :path %>
+  </div>
+
+<!--  <div class="field">-->
+    <%#= form.label :key %>
+    <%#= form.text_area :key %>
+<!--  </div>-->
+
+<!--  <div class="field">-->
+    <%#= form.label :certificate %>
+    <%#= form.text_area :certificate %>
+<!--  </div>-->
+
+<!--  <div class="field">-->
+    <%#= form.label :data %>
+    <%#= form.text_area :data %>
+<!--  </div>-->
+
+  <div class="field input-group input-group-sm mb-3">
+    <div class="input-group-prepend">
+      <%= form.label :key, class: "input-group-text", id: "inputGroup-sizing-sm" %>
+    </div>
+    <%= form.text_area :key, class: "form-control", 'aria-describedby': "inputGroup-sizing-sm", style: "height: 100px;" %>
+  </div>
+
+  <div class="field input-group input-group-sm mb-3">
+    <div class="input-group-prepend">
+      <%= form.label :certificate, class: "input-group-text", id: "inputGroup-sizing-sm" %>
+    </div>
+    <%= form.text_area :certificate, class: "form-control", 'aria-describedby': "inputGroup-sizing-sm", style: "height: 100px;" %>
+  </div>
+
+  <div class="field input-group input-group-sm mb-3">
+    <div class="input-group-prepend">
+      <%= form.label :apache_config, class: "input-group-text", id: "inputGroup-sizing-sm" %>
+    </div>
+    <%= form.text_area :apache_config, class: "form-control", 'aria-describedby': "inputGroup-sizing-sm", style: "height: 350px;" %>
+  </div>
+
+<!--  <div class="field">-->
+    <%#= form.label :last_check %>
+    <%#= form.datetime_select :last_check %>
+<!--  </div>-->
+
+  <div class="actions">
+    <%= form.submit 'SAVE', class: 'btn btn-primary' %>
+  </div>
+<% end %>

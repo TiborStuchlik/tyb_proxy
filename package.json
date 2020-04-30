@@ -3,6 +3,6 @@
   "private": true,
   "dependencies": {
     "clipboard": "^2.0.4",
-    "jquery": "^3.4.0"
+    "jquery": "^3.5.0"
   }
 }
